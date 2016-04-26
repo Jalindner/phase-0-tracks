@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Space is cool</title>
+</head>
+<body>
+	<p>Here at Space Company would like to list a couple of constelations</p>
+	<ul>
+		<li>Aquila</li>
+		<li>Canis Major</li>
+		<li>Orion</li>
+	</ul>
+	<fieldset>
+	<form name="constilation-form" action="https://httpbin.org/post" method="post">
+		<p>Don't see your favorite? Submit your own constelation for our review!</p>
+		<div>
+			<label>Constelation Name:</label>
+			<input type="text" name="const-name">
+		</div>
+		<div>
+			<label>Best month to view this constelation</label>
+			<select>
+				<option value="month">January</option>
+				<option value="month">February</option>
+				<option value="month">March</option>
+				<option value="month">April</option>
+				<option value="month">May</option>
+				<option value="month">June</option>
+				<option value="month">July</option>
+				<option value="month">August</option>
+				<option value="month">September</option>
+				<option value="month">October</option>
+				<option value="month">November</option>
+				<option value="month">December</option>
+			</select>
+		</div>
+		<div>
+			<input type="checkbox" name="const-born" value="agree">
+			<label>I was born under this sign</label>
+		</div>
+		<button type="submit">Submit Constilation</button>
+	</form>
+	</fieldset>
+</body>
+</html>
