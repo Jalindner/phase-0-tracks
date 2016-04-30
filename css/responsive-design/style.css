@@ -30,3 +30,44 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
+#external-links {
+  display: inline-block;
+  vertical-align: top;
+  width: 20%
+}
+/* It seems that setting the width to 50% was
+the cause of display and vertical-align 
+not operating properly 
+
+Now, if you could excuse me, I need to do 
+something about my hemorrhaging forehead*/
+main {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+}
+
+body {
+  max-width: 960px;
+/* Using both this text-align and this 
+margin setting results in a truely 
+centered page */
+  text-align: center;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 40em) {
+  body {
+/* using percentiges for font sizes
+yeilds a more elegant display when the font-size changes
+on a mobile device */
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  img {
+    display: none;
+  }
+}
