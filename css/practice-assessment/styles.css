@@ -1,0 +1,37 @@
+body{
+	background-color: #F0CE7F;
+}
+
+p{
+	font-family: fantasy;
+	font-size: 18px;
+}
+h2, h3, h4{
+	font-family: cursive;
+	letter-spacing: 10px;
+}
+.beginning{
+	font-style: italic;
+	background-color: #97E6C5;
+	border: 1px solid black;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 5px;
+	margin: 20px;
+}
+.side{
+	display: inline-block;
+	vertical-align: text-top;
+}
+ul{
+	list-style-type: circle;
+}
+h2:hover, h3:hover, h4:hover{
+	color: red;
+}
+.example-table th{
+	text-decoration: underline;
+}
+.example-table tr:nth-child(2n+3){
+	background-color: #C7C9C9;
+}
