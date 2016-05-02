@@ -1,3 +1,21 @@
-body{
-	background-color: pink;
+
+header {
+  background-color: red;
+  text-align:center;
+}
+.column-1 {
+  background-color: yellow;
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+}
+.column-2 {
+  background-color: green;
+  width: 48%;
+  display: inline-block;
+  vertical align: top;
+}
+footer {
+  background-color: pink;
+  text-align:center;
 }
