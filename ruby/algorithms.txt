@@ -1,0 +1,9 @@
+Robot elevator task
+-Read input number
+-Sort available floors from lowest to highest
+-Read lowest floor
+-While read floor does not equal read input number
+    -if read floor equals read input number, press floor button
+    -else, read floor above the current read floor
+
+
