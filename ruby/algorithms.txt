@@ -7,3 +7,22 @@ Robot elevator task
     -else, read floor above the current read floor
 
 
+Checking out a customer's order at a cash register
+-Greet customer
+-Search for cell phone usage
+-If cell phone usage equals true
+	-bare minimum effort equals true
+-Else
+	-smile
+-Count unscanned items
+-Until unscanned items equals 0
+	-Search for random unscanned item
+	-Grab unscanned item
+	-Scan unscanned item
+	-Unscanned items becomes unscanned items - 1
+	-Scanned items becomes scanned items + 1
+-Return scanned items to customer
+-If bare minimum effort equals true
+	-print "bye"
+-Else
+	-print "Have a good one"
