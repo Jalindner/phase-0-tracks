@@ -48,13 +48,19 @@ end
 
 #encrypted_pass = encrypt("zed")
 #decrypted_pass = decrypt(encrypted_pass)
+
+#This nested method works because the method within
+#the parenthesees is operated first followed by 
+#the method outside. Unlike other nested loops (which
+#Ruby does not support) This is called by the driver rather
+#than
 #decrypt(encrypt("swordfish"))
 
 puts "Greetings agent, would you like to encrypt(e) or decrypt(d) a password?"
 puts "Enter e for encryption or d for decryption"
 valid_choice = false
 until valid_choice
-  choice = gets.chomp
+  choice = gets.chomp.downcase
   if choice == "e" || choice == "d"
     valid_choice = true
   else
@@ -63,7 +69,7 @@ until valid_choice
 end
 
 puts "Enter your password"
-password = gets.chomp
+password = gets.chomp.downcase
 
 if choice == "e"
   encrypt(password)
