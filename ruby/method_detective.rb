@@ -25,15 +25,19 @@ p " suspects".insert(0, "the usual")
 p "The case of the disappearing last letter".chop
 # => "The case of the disappearing last lette"
 
-# "The mystery of the missing first letter".<???>
+missing_letter = "The mystery of the missing first letter"
+missing_letter = missing_letter.reverse
+missing_letter = missing_letter.chop
+missing_letter = missing_letter.reverse
+p missing_letter
 # => "he mystery of the missing first letter"
 
-# "Elementary,    my   dear        Watson!".<???>
+p "Elementary,    my   dear        Watson!".squeeze(" ")
 # => "Elementary, my dear Watson!"
 
-# "z".<???>
+p "z".bytes
 # => 122 
-# (What is the significance of the number 122 in relation to the character z?)
+# The lower case z's ASCII code is 122
 
-# "How many times does the letter 'a' appear in this string?".<???>
+p "How many times does the letter 'a' appear in this string?".count "a"
 # => 4
