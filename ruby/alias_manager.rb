@@ -17,24 +17,24 @@ def consenant_swap(name)
   name_index = 0
   cons_index = 0
   while name_index < name.length
-  if name[name_index] == " " || name[name_index] == "a" || name[name_index] == "e" ||name[name_index] == "i"|| name[name_index] == "o" || name[name_index] == "u"
-    name_index += 1
-  elsif name[name_index] == "z"
-    name[name_index] = "b"
-    name_index += 1
-  else
-    until name[name_index] == consenants[cons_index]
-      cons_index += 1
+    if name[name_index] == " " || name[name_index] == "a" || name[name_index] == "e" ||name[name_index] == "i"|| name[name_index] == "o" || name[name_index] == "u"
+      name_index += 1
+    elsif name[name_index] == "z"
+      name[name_index] = "b"
+      name_index += 1
+    else
+      until name[name_index] == consenants[cons_index]
+        cons_index += 1
+      end
+      name[name_index] = consenants[cons_index + 1]
+      name_index += 1
     end
-    name[name_index] = consenants[cons_index + 1]
-    name_index += 1
+    cons_index = 0
   end
-  cons_index = 0
-end
   name
 end
 
-agent_name = "John Lindner"
+agent_name = "John Lindnerz"
 puts "Unaltered name: " + agent_name
 agent_name = name_swap(agent_name)
 puts "After name_swap: " + agent_name
