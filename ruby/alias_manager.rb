@@ -58,13 +58,30 @@ def case_fix(name)
   fixed_name.join(' ')
 end
 
-agent_name = "Anna Swen"
-puts "Unaltered name: " + agent_name
-alt_name = name_swap(agent_name)
-puts "After name_swap: " + alt_name
-alt_name = consenant_swap(alt_name)
-puts "After consenant_swap: " + alt_name
-alt_name = vowel_hide(alt_name)
-puts "After vowel_hide: " + alt_name
-alt_name = case_fix(alt_name)
-puts "After case_fix: " + alt_name
+agent_hash = {}
+agent_name = nil
+puts "Please enter your names, and when you're done, type quit or just hit enter"
+until agent_name == "quit" || agent_name == ""
+  agent_name = gets.chomp
+  if agent_name == "quit" || agent_name == ""
+    break
+  else
+    alt_name = case_fix(vowel_hide(consenant_swap(name_swap(agent_name))))
+    agent_hash[agent_name] = alt_name
+  end
+end
+puts agent_hash
+
+#agent_name = "Anna Swen"
+#puts "Unaltered name: " + agent_name
+#alt_name = name_swap(agent_name)
+#puts "After name_swap: " + alt_name
+#alt_name = consenant_swap(alt_name)
+#puts "After consenant_swap: " + alt_name
+#alt_name = vowel_hide(alt_name)
+#puts "After vowel_hide: " + alt_name
+#alt_name = case_fix(alt_name)
+#puts "After case_fix: " + alt_name
+
+
+
