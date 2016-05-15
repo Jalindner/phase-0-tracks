@@ -36,6 +36,7 @@ end
 
 #vowel_hide takes a string arguement
 #run through each character in a string, if the string equals a vowel, replace it with a #
+#trying to find a way to swap vowels has extended my time with this assignment to over 4 hours (T^T)
 def vowel_hide(name)
   name = name.chars
   name_length = name.length
@@ -70,7 +71,10 @@ until agent_name == "quit" || agent_name == ""
     agent_hash[agent_name] = alt_name
   end
 end
-puts agent_hash
+
+agent_hash.each do |name, another_name|
+  puts "#{name} has been encrypted as #{another_name}"
+end
 
 #agent_name = "Anna Swen"
 #puts "Unaltered name: " + agent_name
