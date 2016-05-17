@@ -13,4 +13,12 @@ class Puppy
   #rip_bathroom_tissue
   #point_target
   #bark_spontaneously
+
+  def fetch(toy)
+    puts "I brought back the #{toy}!"
+    toy
+  end
 end
+
+puppy = Puppy.new
+puppy.fetch("wet squeaky toy")
