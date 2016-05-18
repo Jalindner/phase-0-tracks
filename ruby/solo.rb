@@ -1,14 +1,14 @@
 class Dragon
-  attr_accessor :type, :favorite_treasure, :egg_amt, :wing_pairs
+  attr_accessor :type, :favorite_treasure, :egg_amt
   #initialize for Dragon
     #Dragon type
     #favorite_treasure
     #number of eggs
-  def initialize(type, favorite_treasure, wing_pairs)
+  def initialize(type, favorite_treasure)
     @type = type
     @favorite_treasure = favorite_treasure
-    @wing_pairs = wing_pairs
     @egg_amt = 0
+    print_dragon
   end
   #breathe
     #what is exhaled depends on the dragon's type
@@ -24,7 +24,31 @@ class Dragon
         puts "The #{type} dragon is not in our database, proceed with caution!"
       end
   end
+  #update_eggs
+    #takes an integer as an arguement
+    #egg_amt = integer arguement
+    #print updated egg_amt
+  def update_eggs(new_amt)
+    @egg_amt = new_amt
+    puts "This dragon now has #{@egg_amt} of eggs"
+  end
+  #print_dragon
+    #prints out all current data about selected dragon
+  def print_dragon
+    puts "This is a #{@type} dragon"
+    puts "This dragon is known to have #{@egg_amt} eggs"
+    puts "This dragon's favorite treasure is #{@favorite_treasure}"
+    puts " "
+  end
 end
 
-naoki = Dragon.new("undead", "jade structures", 3)
+naoki = Dragon.new("mooshoo", "jade structures")
 naoki.breathe
+naoki.update_eggs(2)
+naoki.print_dragon
+
+
+
+
+
+
