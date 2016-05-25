@@ -89,3 +89,29 @@ end
 
 #=======================================================================
 # Reflection Section
+#1.
+# The most noticable difference between the two hashes are the variables used.
+# Here, we were introduced to constant viarables, as seen by STATE_DATA.
+# Declared by making it all caps, constant variables can be accessed globally
+# and cannot be altered by the program itself.
+# A more fammiliar difference is how the two hashes assign values to their keys.
+# Because the keys in STATE_DATA are strings, they require => to assign values, however
+# the hash within those values use symbols, thus not requireing a =>.
+
+#2.
+# require_relative acts as a link between Ruby files. While require requires that
+# the path to the linked ruby files be typed out, require_relative automatically
+# finds the file relative to the directory you are working in.
+
+#3.
+# Hashes are compatible with .each and .times, they can not use .map as that iteration
+# method always returns an array.
+
+#4.
+# Despite the fact that the two private methods ask for an arguement, they did not
+# actually use them at all. Since we can use attributes throught the entire class without 
+# re-declaring them, they can be placed in the code as is.
+
+#5. 
+# When creating the driver code, I had forgotten that we are able to create an 
+#instance of a class without declaring a new instance variable.
