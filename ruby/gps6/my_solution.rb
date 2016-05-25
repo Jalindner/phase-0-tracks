@@ -1,21 +1,26 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [with John Lindner and Mason Brown].
 # We spent [#] hours on this challenge.
 
 # EXPLANATION OF require_relative
 #
-#
+# 'require_relative' acts as a link between Ruby files. It is different from 'require' in that 
+# uses a relative filepath. 
+
 require_relative 'state_data'
 
 class VirusPredictor
 
+
+# Initial method that takes a string and two integers as an argument, and passes those on to instance variables.
   def initialize(state_of_origin, population_density, population)
     @state = state_of_origin
     @population = population
     @population_density = population_density
   end
 
+# Calls upon two private methods using instance variables as arguments
   def virus_effects
     predicted_deaths(@population_density, @population, @state)
     speed_of_spread(@population_density, @state)
@@ -23,6 +28,10 @@ class VirusPredictor
 
   private
 
+# Method that takes two integers and a string as arguments. It has an if loop to declare
+# what calculation to use and stores that in number_of_deaths. The calculation used is 
+ # dependant on population density. It outputs a string with the results of the calculation
+ # that includes the state name and number of deaths
   def predicted_deaths(population_density, population, state)
     # predicted deaths is solely based on population density
     if @population_density >= 200
@@ -40,6 +49,11 @@ class VirusPredictor
     print "#{@state} will lose #{number_of_deaths} people in this outbreak"
 
   end
+
+
+# It takes an integer and string as arguments. It declares a float equal to zero. 
+#  It has an if loop that performs a calculation based on population density. It
+#  outputs a string with the results of the calculation.
 
   def speed_of_spread(population_density, state) #in months
     # We are still perfecting our formula here. The speed is also affected
