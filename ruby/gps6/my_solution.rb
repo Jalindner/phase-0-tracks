@@ -34,27 +34,13 @@ class VirusPredictor
  # dependant on population density. It outputs a string with the results of the calculation
  # that includes the state name and number of deaths
   def predicted_deaths
-    # predicted deaths is solely based on population density
-    #if @population_density >= 200
-    #  number_of_deaths = (@population * 0.4).floor
-    #elsif @population_density >= 150
-    #  number_of_deaths = (@population * 0.3).floor
-    #elsif @population_density >= 100
-    #  number_of_deaths = (@population * 0.2).floor
     if @population_density >= 50
       number_of_deaths = (@population * ((@population_density * 0.02).floor * 0.1)).floor
     else
       number_of_deaths = (@population * 0.05).floor
     end
 
-    #population density = population_density * .001, population / 100
-    #population density-=50
-
-
-
-
     puts "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
 
   end
 
@@ -66,24 +52,18 @@ class VirusPredictor
   def speed_of_spread #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
-    speed = 0.0
+    speed = 2.5
 
     if @population_density >= 200
-      speed += 0.5
-    elsif @population_density >= 150
-      speed += 1
-    elsif @population_density >= 100
-      speed += 1.5
-    elsif @population_density >= 50
-      speed += 2
+      speed = 0.5
     else
-      speed += 2.5
+      speed -= (@population_density * 0.02).floor * 0.5
     end
 
     puts " and will spread across the state in #{speed} months.\n\n"
 
   end
-
+ 
 end
 
 #=======================================================================
@@ -102,16 +82,10 @@ end
 #california.virus_effects
 
 #alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
-#alaska.virus_effects 
-#driver_array =[]
+#alaska.virus_effects
 STATE_DATA.each do |key, value|
   VirusPredictor.new(key, STATE_DATA[key][:population_density], STATE_DATA[key][:population]).virus_effects
 end
-
-#driver_array.length.times do|index|
-#  driver_array[index].virus_effects
-#end
-
 
 #=======================================================================
 # Reflection Section
