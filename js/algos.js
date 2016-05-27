@@ -12,7 +12,7 @@ function LongestElement(stringArray){
       //if the elements string.length is greater than the current longest value
         //longest = stringArray[i].length
     for (var i = 0; i < stringArray.length; i ++){
-      console.log(stringArray[i].length);
+      //console.log(stringArray[i].length);
       if (stringArray[i].length > longest){
         longest = stringArray[i].length;
       }
