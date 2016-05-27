@@ -59,11 +59,39 @@ function EqualPairs(objectA, objectB){
 }
 
 
+//create function that takes a viariable as an arguement
+function CreateArray(arrayLength){
+  this.arrayLength = arrayLength;
+  var createdArray = [];
+  //while i < arrayLength
+    //create random string of 3 to 10 characters
+    //insert created string into an array
+  for(i = 0; i < 5; i++){
+    createdArray.push(CreateString(Math.random() * (10-3) + 3));
+  }
+  return createdArray;
+}
+
+//create a function that takes a variable as an arguement
+function CreateString(stringLength){
+  this.stringLength = stringLength;
+  var newString = "";
+  var possibleChars = "abcdefghijklmnopqrstuvwxyz";
+  //create a random string based on 
+  //the arguement
+  for(r = 0; r < stringLength; r++){
+    newString += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+  }
+  return newString;
+}
+
+
 var basicArray = new LongestElement(["longestestester", "long", "longer", "longestest", "longest"]);
 basicArray.stringLength();
 console.log("__________________________");
 var nameArray = new LongestElement(["Tina", "Carol", "Sarah", "Evey"]);
 nameArray.stringLength();
+console.log("__________________________");
 
 mark = {name: "Mark", age: 23, occupation: "Engineer"};
 angela = {name: "Angela", age: 24, occupation: "biologist", favoritePet: "Dogs"};
@@ -71,7 +99,15 @@ markTheSecond = {name: "Mark", favoritePet: "Dogs", age: 23};
 
 compare = new EqualPairs(mark, angela);
 compare.tryEqual();
+console.log("__________________________");
 compareSecond = new EqualPairs(mark, markTheSecond);
 compareSecond.tryEqual();
+console.log("__________________________");
 compareThird = new EqualPairs(angela, markTheSecond);
 compareThird.tryEqual();
+console.log("__________________________");
+
+randArray = new CreateArray(5);
+console.log(randArray);
+lengthOfRand = new LongestElement(randArray);
+lengthOfRand.stringLength();
