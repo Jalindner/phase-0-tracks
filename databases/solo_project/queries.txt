@@ -1,0 +1,49 @@
+1.
+sqlite> SELECT * FROM protagonists;
+1|Batman|Detective Comics #27|Justice and Order|false
+2|Brad|Lisa The Painful|Redemption|true
+
+2. (because in some issues he dies but then not really... because multiverse stuff)
+sqlite> UPDATE protagonists SET died = "true" WHERE name="Batman";
+sqlite> SELECT * FROM protagonists WHERE name="Batman";
+1|Batman|Detective Comics #27|Justice and Order|true
+
+3. 
+sqlite> SELECT * FROM protagonists, antagonists WHERE protagonists.id=antagonists.protagonist_id;
+1|Batman|Detective Comics #27|Justice and Order|true|1|Joker|Chaos|false|1
+1|Batman|Detective Comics #27|Justice and Order|true|2|Mr. Freeze|Give the gift of bad ice puns|false|1
+2|Brad|Lisa The Painful|Redemption|true|3|Buzzo|Revenge|true|2
+2|Brad|Lisa The Painful|Redemption|true|4|Rando|Order|true|2
+
+4.
+sqlite> SELECT protagonists.name, protagonists.motivation, antagonists.name, antagonists.motivation FROM protagonists, antagonists WHERE protagonists.id=antagonists.protagonist_id;
+Batman|Justice and Order|Joker|Chaos
+Batman|Justice and Order|Mr. Freeze|Give the gift of bad ice puns
+Brad|Redemption|Buzzo|Revenge
+Brad|Redemption|Rando|Order
+
+5. (because I just remembered that it was Dr. Freeze)
+sqlite> DELETE FROM antagonists WHERE name="Mr. Freeze";
+sqlite> SELECT * FROM antagonists;
+1|Joker|Chaos|false|1
+3|Buzzo|Revenge|true|2
+4|Rando|Order|true|2
+
+JOINs
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists INNER JOIN protagonists ON protagonists.died = antagonists.died;
+Buzzo|Batman
+Buzzo|Brad
+Rando|Batman
+Rando|Brad
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists LEFT JOIN protagonists ON protagonists.died = antagonists.died;
+Joker|
+Buzzo|Batman
+Buzzo|Brad
+Rando|Batman
+Rando|Brad
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists RIGHT JOIN protagonists ON protagonists.died = antagonists.died;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+
