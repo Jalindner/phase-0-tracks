@@ -29,3 +29,21 @@ sqlite> SELECT * FROM antagonists;
 3|Buzzo|Revenge|true|2
 4|Rando|Order|true|2
 
+JOINs
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists INNER JOIN protagonists ON protagonists.died = antagonists.died;
+Buzzo|Batman
+Buzzo|Brad
+Rando|Batman
+Rando|Brad
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists LEFT JOIN protagonists ON protagonists.died = antagonists.died;
+Joker|
+Buzzo|Batman
+Buzzo|Brad
+Rando|Batman
+Rando|Brad
+
+sqlite> SELECT antagonists.name, protagonists.name FROM antagonists RIGHT JOIN protagonists ON protagonists.died = antagonists.died;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+
