@@ -1,0 +1,11 @@
+1. You've joined two tables before. How do you join three?
+2. There are some repetitive columns if we choose to view all fields. Choose instead to just view the user's names, the business name, the star rating, and the comment.
+
+sqlite> SELECT users.firstname, users.lastname,  businesses.name, reviews.comment FROM users JOIN reviews ON users.id = reviews.user_id JOIN businesses ON reviews.business_id = businesses.id;
+Mandy|Kaling|Grundy Hollow Wedding Chapel|Very nice!
+Bradford|Pitt|Amir's Towing|Only ok
+
+
+3. How do you view the data of all three tables for just one particular business? 
+SELECT users.firstname, users.lastname, businesses.name, reviews.comment FROM businesses, users, reviews WHERE businesses.id = 1 AND reviews.business_id = 1 AND users.id = reviews.user_id;
+Mandy|Kaling|Grundy Hollow Wedding Chapel|Very nice!
