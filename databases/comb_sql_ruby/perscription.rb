@@ -97,8 +97,29 @@ def add_perscription(db)
   db.execute(add_cmd,[f_name, l_name, m_name, treatment, months_req, 0, dose_info])
 end
 
-def update_perscription
+#update_perscription
+  #takes database as an arguement
+  #prompt user to enter full name and medicine name
+  #prompt user to enter the number of months the person has
+  #been on the perscription
+  #update current_months
+  #return db 
+def update_perscription(db)
+  upd_cmd = <<-SQL
+    UPDATE perscriptions SET current_months = ?
+    WHERE f_name=? AND l_name=? AND medicine=?
+  SQL
 
+  puts "Enter first name"
+  fir_name = gets.chomp
+  puts "Enter last name"
+  las_name = gets.chomp
+  puts "Enter medicine used"
+  med_name = gets.chomp
+  puts "Enter how many months this person has currently been using this medicine"
+  cur_mo = gets.to_i
+
+  db.execute(upd_cmd,[cur_mo, fir_name, las_name, med_name])
 end
 
 #remove_perscription
@@ -106,6 +127,7 @@ end
   #prompt user to enter first and last name of person to remove
   #prompt user to enter medicine name
   #remove row on basis of f_name, l_name, and medicine
+  #return db
 def remove_perscription(db)
   del_cmd = <<-SQL
     DELETE FROM perscriptions
@@ -125,7 +147,7 @@ end
   #assigns an array with entire database
   #calculate months left by using months_required - current_months
   #print full name, medicine, months assigned, and months left
-def print_perscriptions(db)
+def print_perscription(db)
   print_cmd = <<-SQL
     SELECT perscriptions.f_name, perscriptions.l_name, perscriptions.medicine, perscriptions.months_required, perscriptions.current_months
     FROM perscriptions WHERE f_name=? AND l_name=? AND medicine=?
@@ -144,6 +166,7 @@ def print_perscriptions(db)
   puts "Months assigned: #{p_array[0][3]}"
   puts "Months so far: #{p_array[0][4]}"
   puts "Months left: #{months_left}"
+  puts "_______________________"
 end
 
 db = SQLite3::Database.new("med_manage.db")
@@ -180,4 +203,5 @@ SQL
 
 db.execute(create_perscriptions)
 #add_perscription(db)
-print_perscriptions(db)
+#print_perscription(db)
+#update_perscription(db)
