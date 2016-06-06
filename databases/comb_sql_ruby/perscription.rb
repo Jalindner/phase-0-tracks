@@ -73,6 +73,7 @@ require 'sqlite3'
   #prompts user to input a name, medicine, months required, and dose information
   #assigns input into database
   #current_months default to 0
+  #returns db
 def add_perscription(db)
   add_cmd = <<-SQL
     INSERT INTO perscriptions
@@ -100,12 +101,28 @@ def update_perscription
 
 end
 
-def remove_perscription
+#remove_perscription
+  #takes database as an arguement
+  #prompt user to enter first and last name of person to remove
+  #prompt user to enter medicine name
+  #remove row on basis of f_name, l_name, and medicine
+def remove_perscription(db)
+  del_cmd = <<-SQL
+    DELETE FROM perscriptions
+    WHERE f_name=? AND l_name=? AND medicine=?
+  SQL
+  puts "Enter first name"
+  fir_name = gets.chomp
+  puts "Enter last name"
+  las_name = gets.chomp
+  puts "Enter medicine used"
+  med_name = gets.chomp
 
+  db.execute(del_cmd,[fir_name, las_name, med_name])
 end
 
-def print_perscription
-
+def print_perscriptions(db)
+  
 end
 
 db = SQLite3::Database.new("med_manage.db")
@@ -141,4 +158,5 @@ create_perscriptions = <<-SQL
 SQL
 
 db.execute(create_perscriptions)
-add_perscription(db)
+#add_perscription(db)
+remove_perscription(db)
