@@ -120,9 +120,30 @@ def remove_perscription(db)
 
   db.execute(del_cmd,[fir_name, las_name, med_name])
 end
-
+#print_perscription
+  #takes a database as an arguement
+  #assigns an array with entire database
+  #calculate months left by using months_required - current_months
+  #print full name, medicine, months assigned, and months left
 def print_perscriptions(db)
-  
+  print_cmd = <<-SQL
+    SELECT perscriptions.f_name, perscriptions.l_name, perscriptions.medicine, perscriptions.months_required, perscriptions.current_months
+    FROM perscriptions WHERE f_name=? AND l_name=? AND medicine=?
+  SQL
+  puts "Enter first name"
+  fir_name = gets.chomp
+  puts "Enter last name"
+  las_name = gets.chomp
+  puts "Enter medicine used"
+  med_name = gets.chomp
+  p_array = db.execute(print_cmd, [fir_name, las_name, med_name])
+  months_left = p_array[0][3].to_i - p_array[0][4].to_i
+  puts "_______________________"
+  puts "Name: #{p_array[0][0]} #{p_array[0][1]}"
+  puts "Medicine: #{p_array[0][2]}"
+  puts "Months assigned: #{p_array[0][3]}"
+  puts "Months so far: #{p_array[0][4]}"
+  puts "Months left: #{months_left}"
 end
 
 db = SQLite3::Database.new("med_manage.db")
@@ -159,4 +180,4 @@ SQL
 
 db.execute(create_perscriptions)
 #add_perscription(db)
-remove_perscription(db)
+print_perscriptions(db)
