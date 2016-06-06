@@ -6,13 +6,13 @@ require 'sqlite3'
     #id INT PRIMARY KEY
     #name VARCHAR(255)
     #months_on_perscription INT
-  #percriptions
+  #perscriptions
     #id INT PRIMARY KEY
     #months_required INTEGER
     #dosage VARCHAR(255)
     #person_id INT FOREIGN KEY REFRECNCES people.id
     #medicine_id INT FOREIGN KEY REFRENCES medicine.id
-  #medicine
+  #medicines
     #id INT PRIMARY KEY
     #name VARCHAR(255)
     #usage VARCHAR(255)
@@ -37,12 +37,22 @@ def add_person(db, name)
   #months_on_perscription is defaulted to 0
 end
 
-def add_perscription(db, name)
-
+def add_perscription(db, p_name, dose_info, m_name, months)
+  #create 2 integer variables assinged with the primary keys 
+  #of medicines and people tables
+  per_var = db.execute("SELECT id FROM people WHERE name=?",[p_name])
+  med_var = db.execute("SELECT id FROM medicines WHERE name=?"[m_name])
+  p_var = per_var[0][0]
+  m_var = med_var[0][0]
+  #create_perscription_cmd = <<-SQL
+  # INSERT INTO perscriptions(months_required, dosage, person_id, medicine_id)
+  # VALUES(?,?,?,?)
+  #SQL
+  db.execute("INSERT INTO perscriptions(months_required, dosage, person_id, medicine_id) VALUES(?,?,?,?)",[months, dose_info, 1, 1])
 end
 
-def add_medicine(db, name)
-
+def add_medicine(db, name, usage)
+  db.execute("INSERT INTO medicines(name, usage) VALUES(?, ?)", [name, usage])
 end
 
 def update_person(db, name, months)
@@ -64,7 +74,7 @@ create_people = <<-SQL
 SQL
 
 create_perscriptions = <<-SQL
-  CREATE TABLE IF NOT EXISTS persriptions(
+  CREATE TABLE IF NOT EXISTS perscriptions(
     id INTEGER PRIMARY KEY,
     months_required INT,
     dosage VARCHAR(255),
@@ -83,3 +93,8 @@ create_medicines = <<-SQL
   )
 SQL
 db.execute(create_people)
+#add_person(db, "Jerry")
+db.execute(create_medicines)
+db.execute(create_perscriptions)
+#add_medicine(db, "Relpax", "releive migrane symptoms")
+add_perscription(db, "Jerry", "once every 24 hours", "Relpax", 5)
