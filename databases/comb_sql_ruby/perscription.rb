@@ -144,7 +144,7 @@ def remove_perscription(db)
 end
 #print_perscription
   #takes a database as an arguement
-  #assigns an array with entire database
+  #assigns an array with user input
   #calculate months left by using months_required - current_months
   #print full name, medicine, months assigned, and months left
 def print_perscription(db)
@@ -152,6 +152,7 @@ def print_perscription(db)
     SELECT perscriptions.f_name, perscriptions.l_name, perscriptions.medicine, perscriptions.months_required, perscriptions.current_months
     FROM perscriptions WHERE f_name=? AND l_name=? AND medicine=?
   SQL
+
   puts "Enter first name"
   fir_name = gets.chomp
   puts "Enter last name"
@@ -159,14 +160,39 @@ def print_perscription(db)
   puts "Enter medicine used"
   med_name = gets.chomp
   p_array = db.execute(print_cmd, [fir_name, las_name, med_name])
+  #occasionally runs into error on line 164
   months_left = p_array[0][3].to_i - p_array[0][4].to_i
+
   puts "_______________________"
   puts "Name: #{p_array[0][0]} #{p_array[0][1]}"
   puts "Medicine: #{p_array[0][2]}"
   puts "Months assigned: #{p_array[0][3]}"
   puts "Months so far: #{p_array[0][4]}"
   puts "Months left: #{months_left}"
+  if months_left <= 0
+    puts "NOTICE! This person's perscription has ended."
+    puts "Inform this person before continued use!"
+  end
   puts "_______________________"
+end
+
+#def print_all_perscriptions
+  #takes a database as an arguement
+  #assigns array with entire database
+  #prints each element in an array
+def print_all_perscriptions(db)
+  print_cmd = ("SELECT * FROM perscriptions")
+  p_array = db.execute(print_cmd)
+
+  p_array.length.times do |index|
+  puts "_______________________"
+  puts "Name: #{p_array[index][1]} #{p_array[index][2]}"
+  puts "Medicine: #{p_array[index][3]}"
+  puts "Treatment: #{p_array[index][4]}"
+  puts "Months assigned: #{p_array[index][5]}"
+  puts "Months so far: #{p_array[index][6]}"
+  puts "_______________________"
+  end
 end
 
 db = SQLite3::Database.new("med_manage.db")
@@ -205,3 +231,32 @@ db.execute(create_perscriptions)
 #add_perscription(db)
 #print_perscription(db)
 #update_perscription(db)
+choice = 0
+puts "Medi Manager: Managing you and your friend's and families' medication needs."
+puts "_____________________________________________________________________________"
+until choice == 6
+  puts "What do you need to do?"
+  puts "To select, enter the corresponding number."
+  puts "1) Add a new perscription"
+  puts "2) Update an existing perscription"
+  puts "3) Remove an existing perscription"
+  puts "4) Display a specific perscription"
+  puts "5) Display all perscriptions"
+  puts "6) Exit"
+  choice = gets.to_i
+  if choice == 6
+    break
+  elsif choice == 1
+    add_perscription(db)
+  elsif choice == 2
+    update_perscription(db)
+  elsif choice == 3
+    remove_perscription(db)
+  elsif choice == 4
+    print_perscription(db)
+  elsif choice == 5
+    print_all_perscriptions(db)
+  else
+    puts "Error: invalid choice"
+  end
+end
