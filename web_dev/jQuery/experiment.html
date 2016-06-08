@@ -13,19 +13,23 @@
   </script>
 </head>
 <body>
-<p id="shy_p">This paragraph should hide when the button is clicked</p>
-<button id="hide_p">click me!</button>
-<p id="shy_p2">Same with this paragraph</p>
-<button id="hide_p2">click me!</button>
-<p class=blue>I'm blue abadedabadai!</p>
-<script type="text/javascript">
-  $(".blue")
-  .mouseover (function(){
-    $(this).css("color", "blue");
-  })
-  .mouseout (function(){
-    $(this).css("color", "black");
-  });
-</script>
+  <p id="shy_p">This paragraph should hide when the button is clicked</p>
+  <button id="hide_p">click me!</button>
+  <p id="shy_p2">Same with this paragraph</p>
+  <button id="hide_p2">click me!</button>
+  <p class=blue>I'm blue abadedabadai!</p>
+
+  <script type="text/javascript">
+    $(".blue")
+    .mouseover (function(){
+      $(this).css("color", "blue");
+    })
+    .mouseout (function(){
+      $(this).css("color", "black");
+    });
+  </script>
+
+  <button id="spook">Click this button for a spooky surprize!</button>
+  <img class="spooky" src="005.gif" hidden="true">
 </body>
 </html>
