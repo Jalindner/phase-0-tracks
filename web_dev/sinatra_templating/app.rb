@@ -13,6 +13,11 @@ get '/' do
   erb :home
 end
 
+post '/' do
+  @students = db.execute("UPDATE students SET age=? WHERE id=?", [params['age'], params['id']])
+  redirect '/'
+end
+
 get '/students/new' do
   erb :new_student
 end
