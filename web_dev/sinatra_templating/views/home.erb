@@ -7,9 +7,14 @@
   <h1>Student Management System</h1>
   <p>Welcome to the student management system.</p>
   <p>Click <a href="students/new">here</a> to create a new student.</p>
+  <form action="/" method="POST">
+    <input type="number" name="id" placeholder="Id to update age" min="1">
+    <input type="number" name="age" placeholder="Age to update" min="18">
+    <button type="submit">Update Age</button>
+  </form>
   <ul>
     <% @students.each do |student| %>
-      <li><%= student['name'] %>, <%= student['age'] %></li>
+      <li><%= student['id'] %>, <%= student['name'] %>, <%= student['age'] %></li>
     <% end %>
   </ul>
 </body>
